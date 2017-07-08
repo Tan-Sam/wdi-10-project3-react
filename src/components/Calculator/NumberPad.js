@@ -34,16 +34,32 @@ export class NumberPad extends React.Component {
     console.log("value after: "+this.state.amtKeyedIn);
   }
 
-  // todo:
   getBootstrapColumns = (colSize) => {
     return "col-md-xx col-xs-xx col-lg-xx col-sm-xx"
+              .replace(/xx/g, colSize);
+  }
+
+  getBootstrapColOffset = (colSize) => {
+    return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx"
               .replace(/xx/g, colSize);
   }
 
   numElements = (row) => {
     return row.map((elem) => {
       const isXbutton = (elem === "X")? " clearValues":"";
-      return (<div className={this.getBootstrapColumns(`3`) + isXbutton}
+      const isTwoDigits = (elem >= 10)? " 2digits":"";
+      const isfourthCol = (row.indexOf(elem) === 3)? this.getBootstrapColOffset(`1`):"";
+
+      if(elem === `T`){
+          elem = (<span className="glyphicon glyphicon-ok"></span>);
+      }
+
+
+
+      return (<div className={this.getBootstrapColumns(`2`) +
+                              isXbutton +
+                              isTwoDigits +
+                              isfourthCol}
                    onClick={this.onClick}>{elem}</div>);
     });
   }
