@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import './NumberPad.css';
 
-import {updateAmtKeyedIn} from '../../actions/numberPadAction';
-// import numberPadAction from '../../actions/numberPadAction';
+// import {updateAmtKeyedIn} from '../../actions/numberPadAction';
+import {updateAmtKeyedAction} from '../../actions/numberPadAction';
 
 export class NumberPad extends React.Component {
   constructor(props) {
@@ -35,39 +35,42 @@ export class NumberPad extends React.Component {
   }
 
   getBootstrapColumns = (colSize) => {
-    return "col-md-xx col-xs-xx col-lg-xx col-sm-xx"
+    return "col-md-xx col-xs-xx col-lg-xx col-sm-xx "
               .replace(/xx/g, colSize);
   }
 
+  // doesn't work. margins also not working
   getBootstrapColOffset = (colSize) => {
-    return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx"
+    return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx "
               .replace(/xx/g, colSize);
   }
 
+  //  process & return html col/cell elements
   numElements = (row) => {
     return row.map((elem) => {
-      const isXbutton = (elem === "X")? " clearValues":"";
-      const isTwoDigits = (elem >= 10)? " 2digits":"";
+      const isXbutton = (elem === "X")? "clearValues ":"";
+      const isTwoDigits = (elem >= 10)? "2digits ":"";
       const isfourthCol = (row.indexOf(elem) === 3)? this.getBootstrapColOffset(`1`):"";
 
       if(elem === `T`){
           elem = (<span className="glyphicon glyphicon-ok"></span>);
       }
 
-
-
-      return (<div className={this.getBootstrapColumns(`2`) +
-                              isXbutton +
-                              isTwoDigits +
-                              isfourthCol}
-                   onClick={this.onClick}>{elem}</div>);
+      return (<div key={row.indexOf(elem)}
+                   onClick={this.onClick}
+                   className={this.getBootstrapColumns(`2`) +
+                                   isXbutton +
+                                   isTwoDigits +
+                                   isfourthCol}>{elem}</div>);
     });
   }
 
+  //  process & return html row elements
   numRows = () => {
     return this.numPadArray.map((row) => {
       return (
-        <div className="row">{this.numElements(row)}</div>
+        <div className="row"
+             key={this.numPadArray.indexOf(row)}>{this.numElements(row)}</div>
       );
     });
   }
@@ -81,8 +84,8 @@ export class NumberPad extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    keyedAmtChanged: (amtKeyedIn) => {
-      dispatch(updateAmtKeyedIn(amtKeyedIn));
+    keyedAmtChanged: (keyedInAmt) => {
+      dispatch(updateAmtKeyedAction(keyedInAmt));
     }
   }
 }

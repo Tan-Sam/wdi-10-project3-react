@@ -4,7 +4,7 @@ import {
   combineReducers,
   compose,
   bindActionCreators } from 'redux';
-import thunk from 'react-thunk';
+import thunk from 'redux-thunk';
 
 import NumberPadReducer from '../reducers/numberPadReducer';
 
@@ -14,9 +14,9 @@ export let initStore = () => {
   });
 
   const store = createStore(reducer,
-                            applyMiddleware(thunk),
-                            compose(window.devToolsExtension?
-                                    window.devToolsExtension():
-                                    f=>f));
+                            compose(applyMiddleware(thunk),
+                                    window.devToolsExtension?
+                                      window.devToolsExtension():
+                                      f=>f));
   return store;
 }
