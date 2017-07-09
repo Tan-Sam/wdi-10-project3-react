@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './NumberPad.css';
 
 // import {updateAmtKeyedIn} from '../../actions/numberPadAction';
-import {updateAmtKeyedAction} from '../../actions/numberPadAction';
+import {updateAmtKeyedAction} from '../../actions/numPadAction';
 
 export class NumberPad extends React.Component {
   constructor(props) {
@@ -15,9 +15,10 @@ export class NumberPad extends React.Component {
     };
 
     this.numPadArray = [
-      [1,2,3,10],
+      [7,8,9,10],
       [4,5,6,20,"X"],
-      [7,8,9,`.`,"T"],
+      [1,2,3,"T"],
+      [0,`.`]
     ];
   }
 

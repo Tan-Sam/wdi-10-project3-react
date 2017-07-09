@@ -6,11 +6,13 @@ import {
   bindActionCreators } from 'redux';
 import thunk from 'redux-thunk';
 
-import NumberPadReducer from '../reducers/numberPadReducer';
+import NumberPadReducer from '../reducers/numPadReducer';
+import txCompletedReducer from '../reducers/txCompletedReducer';
 
 export let initStore = () => {
   const reducer = combineReducers({
-    amtKeyedIn: NumberPadReducer
+    amtKeyedIn: NumberPadReducer,
+    currentOperation: txCompletedReducer
   });
 
   const store = createStore(reducer,

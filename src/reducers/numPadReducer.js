@@ -5,7 +5,6 @@ export default function amtKeyedIn(state={}, action){
         ...state,
         amtKeyedIn: action.amtKeyedIn
       };
-
     default:
       return state;
   }
