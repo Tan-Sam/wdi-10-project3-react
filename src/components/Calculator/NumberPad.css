@@ -1,0 +1,47 @@
+@media (max-width: 360px){
+  div[class*="col"] {
+    /*width: 1.6em;
+    height: 1.6em;
+    border: 2px solid magenta;
+    margin: 3px;*/
+    font-size: 1.6em;
+    /*line-height: 1.6em;*/
+  }
+}
+
+/*.col-md-4*/
+div[class*="col"] {
+  /*display: inline-block;*/
+  /*width: 100%;
+  padding-top: 100%;*/
+  /*height: 3em;*/
+  width: 2em;
+  height: 2em;
+  border: 2px solid magenta;
+  border-radius: 8%;
+  margin: 5px;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2em;
+  font-weight: bold;
+}
+
+div[class*="2digits"] {
+  padding-left: 12px;
+}
+
+.fourthCol {
+  background-color: black;
+  
+}
+
+.clearValues {
+  border: 2px solid red;
+  color: red;
+  border-radius: 45%;
+}
+
+.glyphicon-ok {
+  color: #8D8;
+}
