@@ -5,13 +5,15 @@ import './NumberPad.css';
 
 // import {updateAmtKeyedIn} from '../../actions/numberPadAction';
 import {updateAmtKeyedAction} from '../../actions/numPadAction';
+import {getClassNames} from '../../apis/numerPadAPI';
 
 export class NumberPad extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      amtKeyedIn: ""
+      amtKeyedIn: "",
+
     };
 
     this.numPadArray = [
@@ -27,42 +29,46 @@ export class NumberPad extends React.Component {
     const prevValue = this.state.amtKeyedIn;
     const newValue = (input === "X")? "": (prevValue + input);
 
-    console.log("value before set state: "+this.state.amtKeyedIn);
-     this.setState({
-       amtKeyedIn: newValue,
-     });
+    this.setState({
+     amtKeyedIn: newValue,
+    });
     this.props.keyedAmtChanged(newValue);
-    console.log("value after: "+this.state.amtKeyedIn);
+
   }
 
+  //  set bootstrap grid-col class programmatically.
+  //  Saves time by changing 1 field, instead of editing html 1 by 1.
   getBootstrapColumns = (colSize) => {
     return "col-md-xx col-xs-xx col-lg-xx col-sm-xx "
               .replace(/xx/g, colSize);
   }
 
   // doesn't work. margins also not working
-  getBootstrapColOffset = (colSize) => {
-    return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx "
-              .replace(/xx/g, colSize);
-  }
+  // getBootstrapColOffset = (colSize) => {
+  //   return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx "
+  //             .replace(/xx/g, colSize);
+  // }
 
   //  process & return html col/cell elements
   numElements = (row) => {
     return row.map((elem) => {
-      const isXbutton = (elem === "X")? "clearValues ":"";
-      const isTwoDigits = (elem >= 10)? "2digits ":"";
-      const isfourthCol = (row.indexOf(elem) === 3)? this.getBootstrapColOffset(`1`):"";
 
+      // x button css formatting
+      const isXbutton = (elem === "X")? "clearValues ":"";
+
+      //  center text for 2-digits
+      const isTwoDigits = (elem >= 10)? "2digits ":"";
+      // const isfourthCol = (row.indexOf(elem) === 3)?
+      //            this.getBootstrapColOffset(`1`):"";
+
+      //  set green tick for operation completed.
       if(elem === `T`){
           elem = (<span className="glyphicon glyphicon-ok"></span>);
       }
 
       return (<div key={row.indexOf(elem)}
                    onClick={this.onClick}
-                   className={this.getBootstrapColumns(`2`) +
-                                   isXbutton +
-                                   isTwoDigits +
-                                   isfourthCol}>{elem}</div>);
+                   className={getClassNames(`2`)}{elem}</div>);                  
     });
   }
 
@@ -70,8 +76,10 @@ export class NumberPad extends React.Component {
   numRows = () => {
     return this.numPadArray.map((row) => {
       return (
-        <div className="row"
-             key={this.numPadArray.indexOf(row)}>{this.numElements(row)}</div>
+        <div key={this.numPadArray.indexOf(row)}
+             className="row">
+           {this.numElements(row)}
+        </div>
       );
     });
   }
@@ -83,11 +91,18 @@ export class NumberPad extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    // todo tx completed
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     keyedAmtChanged: (keyedInAmt) => {
       dispatch(updateAmtKeyedAction(keyedInAmt));
-    }
+    },
+
   }
 }
 
