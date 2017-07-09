@@ -1,18 +1,23 @@
 {
+<<<<<<< HEAD
   "name": "wdi-10-project-react",
   "version": "0.2.0",
   "homepage": "#",
   "private": true,
+=======
+>>>>>>> 93be01526f5983f0f76970cdaa1f90f90326a7c0
   "devDependencies": {
     "gh-pages": "^1.12.1",
     "react-scripts": "1.0.8"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-redux": "^5.0.2",
-    "redux": "^3.6.0"
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-thunk": "^1.0.0",
+    "redux": "^3.7.1",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
