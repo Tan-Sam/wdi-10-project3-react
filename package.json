@@ -1,7 +1,7 @@
 {
   "name": "react-shop",
   "version": "0.2.0",
-  "homepage": "http://krzysu.github.io/reactjs-shopping-cart",
+  "homepage": "reactjs-POS",
   "private": true,
   "devDependencies": {
     "gh-pages": "^0.12.0",
