@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Product from '../components/Product';
-import { addToCart, removeFromCart, isInCart } from '../reducer/cart';
+import { addToCart, removeFromCart, isInCart } from '../reducers/cart';
 
 const mapStateToProps = (state, props) => {
     return {
