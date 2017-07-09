@@ -1,4 +1,4 @@
-const getClassNames = (colSize) => {
+export const getClassNames = (colSize) => {
 
   getBootstrapColumns = (columnSize) => {
     return "col-xs-xx col-sm-xx col-md-xx col-lg-xx "
@@ -24,8 +24,4 @@ const getClassNames = (colSize) => {
   // }
 
   return classNames;
-
-
 }
-
-export
