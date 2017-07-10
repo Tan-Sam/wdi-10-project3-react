@@ -1,3 +1,5 @@
+
+// <editor-fold Loads front page wif the screens.... DO NOT ERASE THIS --- Kenny Tan!!!
 import React from 'react';
 import Cart from './containers/Cart';
 import ProductList from './containers/ProductList';
@@ -27,5 +29,6 @@ const App = () => {
         </div>
     );
 }
-// -- Loads front page wif the screens.... DO NOT ERASE THIS --- Kenny Tan!!!
+
 export default App;
+// </editor-fold>
