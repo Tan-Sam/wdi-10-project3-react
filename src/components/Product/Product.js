@@ -3,21 +3,26 @@ import { connect } from 'react-redux';
 
 import {
   addToCart,
+
   removeFromCart,
+
   isInCart } from '../../reducers/cartReducer';
 
 import './Product.css';
 
 class Product extends Component {
 
-  constructor(props){
-    super(props);
+    constructor(props){
+      super(props);
 
-    this.state = {
-      productCount: 0
+      this.state = {
+        productCount: 0
+      }
     }
-  }
 
+    /*
+     *  button clicked
+     */
     handleClick = (e) => {
       e.preventDefault();
 
@@ -33,16 +38,19 @@ class Product extends Component {
         productCount: newProductCount
       });
 
-      console.log(this.props.name, 'handleClick: ', this.state.productCount);
+      console.log(this.props.name, ' handleClick: ', this.state.productCount);
 
-        const { id, addToCart, removeFromCart, isInCart } = this.props;
+      // eslint-disable-next-line
+      const { id, addToCart, removeFromCart, isInCart } = this.props;
 
-        if (isInCart) {
-            removeFromCart(id);
-        } else {
-          
-            addToCart(id);
-        }
+      addToCart(id);
+
+      // if (isInCart) {
+      //     removeFromCart(id);
+      // } else {
+      //
+      //     addToCart(id);
+      // }
     }
 
     pictureClicked = (e) => {
@@ -69,8 +77,7 @@ class Product extends Component {
                     <div className="product__button-wrap">
                         <button
                             className={isInCart ? 'btn btn-danger' : 'btn btn-primary'}
-                            onClick={this.handleClick}
-                        >
+                            onClick={this.handleClick}>
                             {isInCart ? 'Remove' : 'Add to POS'}
                         </button>
                     </div>

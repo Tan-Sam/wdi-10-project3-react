@@ -1,21 +1,11 @@
-.cart {
-  min-height: 7em;
+.cart > .panel {
+  min-height: 650px;
+  border-radius: 1%
 }
 
-.cart ul {
+.cart ol {
   margin-bottom: .7em;
-}
-
-.cart-item {
-  margin-bottom: .3em;
-}
-
-.cart-item__name {
-  display: inline-block;
-}
-
-.cart-item__price {
-  float: right;
+  padding-left: 20px;
 }
 
 .cart__total {
@@ -23,4 +13,7 @@
   font-size: 1.5em;
   line-height: 1.1em;
   text-align: right;
+  bottom: 50px;
+  right: 35px;
+  position: absolute;
 }

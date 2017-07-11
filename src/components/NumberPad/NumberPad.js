@@ -86,11 +86,11 @@ export class NumberPad extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    // todo tx completed
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     // todo tx completed
+//   }
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -110,6 +110,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 NumberPad.propTypes = {
+  keyedAmtChanged: PropTypes.func.isRequired,
+  txCompleted: PropTypes.func.isRequired,
+  operationLoaded: PropTypes.func.isRequired,
+  operationUnLoaded: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(NumberPad);

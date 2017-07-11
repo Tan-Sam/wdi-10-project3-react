@@ -1,9 +1,10 @@
-import React, {PropTypes} from 'react';
+import React from 'react';
+// , {PropTypes}
 
 export default class Footer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (
@@ -18,5 +19,5 @@ export default class Footer extends React.Component {
   }
 }
 
-Footer.propTypes = {
-};
+// Footer.propTypes = {
+// };

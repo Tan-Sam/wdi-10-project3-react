@@ -8,9 +8,9 @@ import Footer from '../Footer/Footer';
 import NumberPad from '../NumberPad/NumberPad.js';
 
 export default class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
 
@@ -34,4 +34,5 @@ export default class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
+  currentOperation: PropTypes.string
 }

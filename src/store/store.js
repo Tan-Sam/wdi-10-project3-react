@@ -2,17 +2,18 @@ import {
   applyMiddleware,
   createStore,
   combineReducers,
-  compose,
-  bindActionCreators } from 'redux';
+  compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import NumberPadReducer from '../reducers/numPadReducer';
 import txCompletedReducer from '../reducers/txCompletedReducer';
 import currentOperationReducer from '../reducers/currentOperationReducer';
 
-import productsData from '../data/products';
 import cartReducer from '../reducers/cartReducer';
 import productsReducer from '../reducers/productsReducer';
+
+import productsData from '../data/products';
+
 
 export let initStore = () => {
   const reducer = combineReducers({
