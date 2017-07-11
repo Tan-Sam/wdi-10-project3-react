@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Product from '../Product';
+import Product from '../../containers/Product';
 
 const ProductList = ({ products }) => {
     return (
