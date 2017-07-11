@@ -12,6 +12,16 @@
     float: right;
 }
 
-img {
+.product.thumbnail img[alt=product] {
   border-radius: 5%;
+}
+
+.product.thumbnail img[alt=product]:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.product.thumbnail img[alt=product]:active {
+  opacity: 0;
+  filter: alpha(opacity=0);
 }

@@ -1,40 +1,55 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { addToCart, removeFromCart, isInCart } from '../../reducers/cartReducer';
+import {
+  addToCart,
+  removeFromCart,
+  isInCart } from '../../reducers/cartReducer';
+
+import './Product.css';
 
 class Product extends Component {
 
-  // constructor(props){
-  //   super(props);
-  //
-  //   this.state = {
-  //     productCount: 0
-  //   }
-  // }
+  constructor(props){
+    super(props);
+
+    this.state = {
+      productCount: 0
+    }
+  }
 
     handleClick = (e) => {
-// e.preventDefault();
-      // this.setState({
-      //   productCount: this.state.productCount - 1
-      // });
+      e.preventDefault();
 
-      // console.log(this.props.name, 'handleClick: ', this.state.productCount);
+      let newProductCount = this.state.productCount;
+
+      newProductCount--;
+
+      if (newProductCount < 0 ) {
+        newProductCount = 0;
+      }
+
+      this.setState({
+        productCount: newProductCount
+      });
+
+      console.log(this.props.name, 'handleClick: ', this.state.productCount);
 
         const { id, addToCart, removeFromCart, isInCart } = this.props;
 
         if (isInCart) {
             removeFromCart(id);
         } else {
-          debugger;
+          
             addToCart(id);
         }
     }
 
     pictureClicked = (e) => {
         e.preventDefault();
+
         this.setState({
-          productCount: this.state.productCount + 1,
+          productCount: this.state.productCount+1
         });
 
         console.log(this.props.name, 'pictureClicked: ', this.state.productCount);
