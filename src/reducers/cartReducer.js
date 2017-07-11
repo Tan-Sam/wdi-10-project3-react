@@ -10,6 +10,9 @@ const initialState = {
     currency: '$'
 };
 
+// const initialState = [];
+
+
 export default function cart(state = initialState, action = {}) {
     switch (action.type) {
         case CART_ADD:
@@ -23,10 +26,35 @@ export default function cart(state = initialState, action = {}) {
 
 
 function handleCartAdd(state, payload) {
-    return {
-        ...state,
-        items: [ ...state.items, payload.productId ]
-    };
+
+
+  let itemFound = state.items.find((itm) => {
+                    return itm.id === payload.productId
+                  });
+
+  if (state.items.length === 0 ||
+      !itemFound) {
+    state.items.push({
+      id: payload.productId,
+      qty: 1
+    });
+  }
+  else {
+    state.items = state.items.map((itm) => {
+      if (itm === itemFound) {
+        itm.qty++;
+      }
+      return itm;
+    });
+  }
+  return state;
+  //<editor-fold working
+    //return
+    // {
+    //     ...state,
+    //     items: [ ...state.items, payload.productId ]
+    // };
+    // </editor-fold>
 }
 
 function handleCartRemove(state, payload) {

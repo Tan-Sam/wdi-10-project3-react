@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import {
   addToCart,
-
   removeFromCart,
-
   isInCart } from '../../reducers/cartReducer';
 
 import './Product.css';

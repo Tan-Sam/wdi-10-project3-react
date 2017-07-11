@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
+// eslint-disable-next-line
 import { getItems, getCurrency, getTotal } from '../../reducers/cartReducer';
 import CartItem from '../CartItem/CartItem';
 
@@ -42,7 +42,7 @@ Cart.propTypes = {
 const mapStateToProps = (state, props) => {
     return {
         items: getItems(state, props),
-        currency: getCurrency(state, props),
+        // currency: getCurrency(state, props),
         total: getTotal(state, props)
     }
 }
