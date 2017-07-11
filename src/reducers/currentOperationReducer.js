@@ -1,8 +1,6 @@
-const initialState = "salesRegistration";
-// change registration
-// tx completed?
-//
-export default function currentOperation(state={currentOperation: initialState}, action){
+const initialState = {currentOperation: "salesRegistration"};
+
+export default function currentOperation(state=initialState, action){
   switch (action.type) {
     case 'UPDATE_CURRENT_OPERATION':
       return {

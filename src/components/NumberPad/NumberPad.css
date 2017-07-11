@@ -1,5 +1,5 @@
 @media (max-width: 360px){
-  div[class*="col"] {
+  div[class*="numpadComp"] {
     /*width: 1.6em;
     height: 1.6em;
     border: 2px solid magenta;
@@ -9,13 +9,13 @@
   }
 }
 
-div[class*="col"]:active {
+div[class*="numpadComp"]:active {
   background-color: #F22;
   color: white;
 }
 
 /*.col-md-4*/
-div[class*="col"] {
+  div[class*="numpadComp"] {
   /*width: 2em;
   height: 2em;*/
 

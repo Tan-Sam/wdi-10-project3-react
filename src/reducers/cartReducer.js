@@ -1,4 +1,4 @@
-import { getProduct } from '../reducers/products';
+import { getProduct } from '../reducers/productsReducer';
 
 // actions
 const CART_ADD   = 'cart/ADD';
@@ -20,6 +20,7 @@ export default function cart(state = initialState, action = {}) {
             return state;
     }
 }
+
 
 function handleCartAdd(state, payload) {
     return {
@@ -53,6 +54,7 @@ export function removeFromCart(productId) {
         }
     }
 }
+
 
 // selectors
 export function isInCart(state, props) {

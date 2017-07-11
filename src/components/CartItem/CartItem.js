@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 
 const CartItem = ({ name, price, currency }) => {
-    return (
-        <div className="cart-item">
-          <span className="cart-item__name">{name}</span>
-          <span className="cart-item__price">{price} {currency}</span>
-        </div>
-    );
+  return (
+    <div className="cart-item">
+      <span className="cart-item__name">{name}</span>
+      <span className="cart-item__price">{price} {currency}</span>
+    </div>
+  );
 }
 
 CartItem.propTypes = {

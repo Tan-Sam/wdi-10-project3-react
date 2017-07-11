@@ -5,6 +5,8 @@
 
 # testing
 /coverage
+src/components/App/App-test.js
+/testings
 
 # production
 /build
@@ -19,6 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-
-/testings

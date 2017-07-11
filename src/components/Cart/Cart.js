@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
-import CartItem from './CartItem';
+import { connect } from 'react-redux';
+
+import { getItems, getCurrency, getTotal } from '../../reducers/cartReducer';
+import CartItem from '../CartItem/CartItem';
 
 const Cart = ({ items, total, currency }) => {
     return (
         <div>
             <h3>POS Screen Tally</h3>
-
             <div className="cart">
                 <div className="panel panel-default">
                     <div className="panel-body">
@@ -35,4 +37,12 @@ Cart.propTypes = {
     currency: PropTypes.string,
 }
 
-export default Cart;
+const mapStateToProps = (state, props) => {
+    return {
+        items: getItems(state, props),
+        currency: getCurrency(state, props),
+        total: getTotal(state, props)
+    }
+}
+
+export default connect(mapStateToProps)(Cart);

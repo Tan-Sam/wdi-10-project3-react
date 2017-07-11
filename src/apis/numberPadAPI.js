@@ -31,6 +31,7 @@ export const getClassNames = (colSize, elem) => {
   }
 
   classNames += getBootstrapColumns(colSize);
+  classNames += 'numpadComp';
 
   return classNames;
 }

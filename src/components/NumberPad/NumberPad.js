@@ -7,6 +7,8 @@ import {updateCurrentOperation} from '../../actions/currentOperationAction';
 
 import {getClassNames} from '../../apis/numberPadAPI';
 
+import './NumberPad.css';
+
 export class NumberPad extends React.Component {
   constructor(props) {
     super(props);
@@ -49,30 +51,9 @@ export class NumberPad extends React.Component {
     }
   }
 
-  //  set bootstrap grid-col class programmatically.
-  //  Saves time by changing 1 field, instead of editing html 1 by 1.
-  getBootstrapColumns = (colSize) => {
-    return "col-md-xx col-xs-xx col-lg-xx col-sm-xx "
-              .replace(/xx/g, colSize);
-  }
-
-  // doesn't work. margins also not working
-  // getBootstrapColOffset = (colSize) => {
-  //   return "col-md-offset-xx col-xs-offset-xx col-lg-offset-xx col-sm-offset-xx "
-  //             .replace(/xx/g, colSize);
-  // }
-
   //  process & return html col/cell elements
   numElements = (row) => {
     return row.map((elem) => {
-
-      // x button css formatting
-      const isXbutton = (elem === "X")? "clearValues ":"";
-
-      //  center text for 2-digits
-      const isTwoDigits = (elem >= 10)? "2digits ":"";
-      // const isfourthCol = (row.indexOf(elem) === 3)?
-      //            this.getBootstrapColOffset(`1`):"";
 
       //  set green tick for operation completed.
       if(elem === `T`){

@@ -1,7 +1,26 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
+import { addToCart, removeFromCart, isInCart } from '../../reducers/cartReducer';
 
 class Product extends Component {
-    handleClick = () => {
+
+  // constructor(props){
+  //   super(props);
+  //
+  //   this.state = {
+  //     productCount: 0
+  //   }
+  // }
+
+    handleClick = (e) => {
+// e.preventDefault();
+      // this.setState({
+      //   productCount: this.state.productCount - 1
+      // });
+
+      // console.log(this.props.name, 'handleClick: ', this.state.productCount);
+
         const { id, addToCart, removeFromCart, isInCart } = this.props;
 
         if (isInCart) {
@@ -11,12 +30,21 @@ class Product extends Component {
         }
     }
 
+    pictureClicked = (e) => {
+        e.preventDefault();
+        this.setState({
+          productCount: this.state.productCount + 1,
+        });
+
+        console.log(this.props.name, 'pictureClicked: ', this.state.productCount);
+    }
+
     render() {
         const { name, price, currency, image, url, isInCart } = this.props;
 
         return (
-            <div className="product thumbnail">
-                <img src={image} alt="product" />
+            <div className="product thumbnail" >
+                <img src={image} alt="product" onClick={this.pictureClicked}/>
                 <div className="caption">
                     <h3>
                         <a href={url}>{name}</a>
@@ -48,4 +76,15 @@ Product.propTypes = {
     removeFromCart: PropTypes.func.isRequired,
 }
 
-export default Product;
+const mapStateToProps = (state, props) => {
+    return {
+        isInCart: isInCart(state, props)
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    addToCart: (id) => dispatch(addToCart(id)),
+    removeFromCart: (id) => dispatch(removeFromCart(id))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

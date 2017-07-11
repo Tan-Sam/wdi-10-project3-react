@@ -1,5 +1,11 @@
 import React, { PropTypes } from 'react';
-import Product from '../../containers/Product';
+import { connect } from 'react-redux';
+
+import Product from '../Product/Product';
+
+import { getProducts } from '../../reducers/productsReducer';
+
+import './ProductList.css';
 
 const ProductList = ({ products }) => {
     return (
@@ -20,4 +26,10 @@ ProductList.propTypes = {
     products: PropTypes.array,
 }
 
-export default ProductList;
+const mapStateToProps = (state, props) => {
+    return {
+        products: getProducts(state, props)
+    }
+}
+
+export default connect(mapStateToProps)(ProductList);

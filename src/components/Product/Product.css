@@ -11,3 +11,7 @@
 .product__button-wrap {
     float: right;
 }
+
+img {
+  border-radius: 5%;
+}
