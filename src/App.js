@@ -23,7 +23,7 @@ const App = () => {
 
             <footer>
                 <small>
-                    made by <a href="https://twitter.com/kenT">Kent n team</a>, source code available on <a href="#">github</a>
+                    made by <a>Team KSM, F.P by Kent</a>, source code available on <a href="#">github</a>
                 </small>
             </footer>
         </div>

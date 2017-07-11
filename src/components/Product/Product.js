@@ -7,6 +7,7 @@ class Product extends Component {
         if (isInCart) {
             removeFromCart(id);
         } else {
+          debugger;
             addToCart(id);
         }
     }
