@@ -41,10 +41,13 @@ class Product extends Component {
       // eslint-disable-next-line
       const { id, addToCart, removeFromCart, isInCart } = this.props;
 
-      addToCart(id);
+      removeFromCart(id);
 
+
+      // addToCart(id);
+
+      // removeFromCart(id);
       // if (isInCart) {
-      //     removeFromCart(id);
       // } else {
       //
       //     addToCart(id);
@@ -53,6 +56,8 @@ class Product extends Component {
 
     pictureClicked = (e) => {
         e.preventDefault();
+
+this.props.addToCart(this.props.id);
 
         this.setState({
           productCount: this.state.productCount+1
