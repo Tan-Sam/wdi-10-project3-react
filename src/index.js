@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 // import {createStore} from 'redux';
 //  local imports
-import './index.css';
+// import './index.css';
 import App from './components/App/App';
 import {initStore} from './store/store';
 import registerServiceWorker from './registerServiceWorker';

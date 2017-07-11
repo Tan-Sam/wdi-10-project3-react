@@ -1,6 +1,6 @@
-export const updateTxCompleted = (currentOperation) => {
+export const updateTxCompleted = () => {
   return {
     type: 'UPDATE_TX_COMPLETED',
-    currentOperation
+    txCompleted: true
   };
 }

@@ -1,4 +1,4 @@
-const initialState = "salesRegistration";
+const initialState = false;
 
 export default function txCompleted(state = initialState,
                                     action) {
@@ -6,10 +6,9 @@ export default function txCompleted(state = initialState,
     case 'UPDATE_TX_COMPLETED':
       return {
         ...state,
-        currentOperation: action.currentOperation
+        txCompleted: action.txCompleted
       };
     default:
       return state;
   }
-
 }

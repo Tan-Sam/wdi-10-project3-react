@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
-import './NumberPad.css';
-
-// import {updateAmtKeyedIn} from '../../actions/numberPadAction';
 import {updateAmtKeyedAction} from '../../actions/numPadAction';
-import {getClassNames} from '../../apis/numerPadAPI';
+import {updateTxCompleted} from '../../actions/txCompletedAction';
+import {updateCurrentOperation} from '../../actions/currentOperationAction';
+
+import {getClassNames} from '../../apis/numberPadAPI';
 
 export class NumberPad extends React.Component {
   constructor(props) {
@@ -13,27 +13,40 @@ export class NumberPad extends React.Component {
 
     this.state = {
       amtKeyedIn: "",
-
+      txCompleted: false
     };
 
     this.numPadArray = [
       [7,8,9,10],
-      [4,5,6,20,"X"],
-      [1,2,3,"T"],
-      [0,`.`]
+      [4,5,6,20],
+      [1,2,3,"X"],
+      [0,`.`,"T"]
     ];
+
+    this.props.operationLoaded();
+  }
+
+  componentDidUnmount(){
+    this.props.operationUnLoaded();
   }
 
   onClick = (e) => {
-    const input = e.target.innerText;
-    const prevValue = this.state.amtKeyedIn;
-    const newValue = (input === "X")? "": (prevValue + input);
 
-    this.setState({
-     amtKeyedIn: newValue,
-    });
-    this.props.keyedAmtChanged(newValue);
+    if (e.target.className.includes('glyphicon-ok')) {
+      this.setState({
+        txCompleted: true,
+      });
+      this.props.txCompleted();
+    }else {
+        const input = e.target.innerText;
+        const prevValue = this.state.amtKeyedIn;
+        const newValue = (input === "X")? "": (prevValue + input);
 
+        this.setState({
+         amtKeyedIn: newValue,
+        });
+        this.props.keyedAmtChanged(newValue);
+    }
   }
 
   //  set bootstrap grid-col class programmatically.
@@ -63,12 +76,12 @@ export class NumberPad extends React.Component {
 
       //  set green tick for operation completed.
       if(elem === `T`){
-          elem = (<span className="glyphicon glyphicon-ok"></span>);
+          elem = (<span name='tick' className="glyphicon glyphicon-ok"></span>);
       }
 
       return (<div key={row.indexOf(elem)}
                    onClick={this.onClick}
-                   className={getClassNames(`2`)}{elem}</div>);                  
+                   className={getClassNames(`1`,elem)}>{elem}</div>);
     });
   }
 
@@ -86,6 +99,7 @@ export class NumberPad extends React.Component {
 
   render() {
     return (<div className="container">
+              <a href="/">Go to home</a>
               {this.numRows()}
             </div>);
   }
@@ -102,7 +116,15 @@ const mapDispatchToProps = (dispatch) => {
     keyedAmtChanged: (keyedInAmt) => {
       dispatch(updateAmtKeyedAction(keyedInAmt));
     },
-
+    txCompleted: () => {
+        dispatch(updateTxCompleted());
+    },
+    operationLoaded: () => {
+      dispatch(updateCurrentOperation('changeRegistration'));
+    },
+    operationUnLoaded: () => {
+      dispatch(updateCurrentOperation('salesRegistration'));
+    }
   }
 }
 
