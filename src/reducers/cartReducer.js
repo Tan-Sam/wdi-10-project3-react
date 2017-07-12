@@ -21,7 +21,6 @@ export default function cart(state = initialState, action = {}) {
     }
 }
 
-
 function handleCartAdd(state, payload) {
 
   // find if item is in store with productId
@@ -33,14 +32,13 @@ function handleCartAdd(state, payload) {
   // state.items won't be null as state is initialized.
   if (state.items.length === 0 ||
       !itemFound) {
-
-
     state.items.push({
       id: payload.productId,
       qty: 1,
     });
   }
-  else {  //  find item & increase qty.
+  else {
+  //  find item & increase qty.
     state.items = state.items.map((itm) => {
       if (itm === itemFound) {
         itm.qty++;
@@ -48,7 +46,9 @@ function handleCartAdd(state, payload) {
       return itm;
     });
   }
-  return {...state};
+  return {...state};// if ... left out,
+                    //  components subscribed to store
+                    //  will not receive updates.
 }
 
 function handleCartRemove(state, payload) {
@@ -100,14 +100,7 @@ export function getItems(state, props) {
 
       let theprod = getProduct(state, item );
 
-      // console.log('item qty is: ', item.qty);
-      // console.log('item price is: ', item.price);
-
       theprod = {...theprod, qty: item.qty, subtotal: (item.qty * item.price)};
-
-      // console.log(theprod);
-
-
 
       return theprod;
     });
@@ -123,7 +116,7 @@ export function getTotal(state, props) {
         const item = getProduct(state, cartItem);
         console.log(item);
         console.log(cartItem);
-        return acc + (cartItem.qty * item.price);//item.price;
+        return acc + (cartItem.qty * item.price);
     }, 0);
 }
 // </editor-fold>

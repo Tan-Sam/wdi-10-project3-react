@@ -8,8 +8,6 @@ const CartItem = ({ name, price, currency, qty, subtotal }) => {
       <div className="name col-md-2">${price}</div>
       <div className="name col-md-2">{qty}</div>
       <div className="name col-md-2">{price * qty}</div>
-      {/*<span className="cart-item__name">{name}</span>
-      <span className="cart-item__price">{price} {currency}</span>*/}
     </div>
   );
 }

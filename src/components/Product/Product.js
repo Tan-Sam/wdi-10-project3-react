@@ -21,7 +21,7 @@ class Product extends Component {
     /*
      *  remove button clicked
      */
-    handleClick = (e) => {
+      removeItemClicked = (e) => {
       e.preventDefault();
 
       let newProductCount = this.state.productCount;
@@ -36,20 +36,13 @@ class Product extends Component {
         productCount: newProductCount
       });
 
-      // console.log(this.props.name, ' handleClick: ', this.state.productCount);
-
       // eslint-disable-next-line
       const { id, addToCart, removeFromCart, isInCart } = this.props;
 
       removeFromCart(id);
-
-      // if (isInCart) {
-      //     removeFromCart(id);
-      // } else {
-      //     addToCart(id);
-      // }
     }
 
+    // add item qty.
     pictureClicked = (e) => {
         e.preventDefault();
 
@@ -58,14 +51,11 @@ class Product extends Component {
         this.setState({
           productCount: this.state.productCount+1
         });
-
-        // console.log(this.props.name, 'pictureClicked: ', this.state.productCount);
     }
 
     render() {
       // eslint-disable-next-line
         const { name, price, currency, image, url, isInCart } = this.props;
-
 
         const isInCartOnot = this.state.productCount > 0;
 
@@ -80,7 +70,7 @@ class Product extends Component {
                     <div className="product__button-wrap">
                         <button
                             className={isInCartOnot ? 'btn btn-danger' : 'btn btn-primary'}
-                            onClick={this.handleClick}>
+                            onClick={this.removeItemClicked}>
                             {isInCartOnot ? 'Remove' : ''}
                         </button>
                     </div>
