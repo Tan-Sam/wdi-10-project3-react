@@ -9,8 +9,11 @@ export function getProducts(state, props) {
 }
 
 //  for new cart (sam)
-export function getProductsByIds(state, props) {
+export function getProductsInCart(state, props) {
     // return state.products;
+
+    return state.products
+
 }
 
 export function getProduct(state, props) {

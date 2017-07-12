@@ -46,7 +46,7 @@ function handleCartAdd(state, payload) {
       return itm;
     });
   }
-  return state;
+  return {...state};
 }
 
 function handleCartRemove(state, payload) {
@@ -57,13 +57,14 @@ function handleCartRemove(state, payload) {
           //  if qty is 0, don't return item.
           itm.qty--;
           if (itm.qty === 0) {
+            // eslint-disable-next-line
             return;
           }
         }
         return itm;
       });
 
-      return state;
+      return {...state};
 }
 
 // <editor-fold action creators
@@ -95,7 +96,7 @@ export function getItems(state, props) {
     console.log('method???');
     return state.cart.items.map(item =>{
       console.log('im in the method: ',item);
-      getProduct(state, item );
+      return getProduct(state, item );
     });
 }
 

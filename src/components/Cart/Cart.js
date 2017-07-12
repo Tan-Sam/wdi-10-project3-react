@@ -11,7 +11,6 @@ const Cart = ({ items, total, currency }) => {
     console.log('Im in cart');
     items.forEach(el=>console.log(el));
 
-
     return (
         <div>
             <h3>POS Screen Tally</h3>
@@ -45,6 +44,9 @@ Cart.propTypes = {
 }
 
 const mapStateToProps = (state, props) => {
+
+  console.log(state);
+  console.log(props);
     return {
         items: getItems(state, props),
         currency: getCurrency(state, props),
