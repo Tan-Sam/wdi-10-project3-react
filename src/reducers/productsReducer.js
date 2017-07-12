@@ -17,5 +17,7 @@ export function getProductsInCart(state, props) {
 }
 
 export function getProduct(state, props) {
+    // const foundProduct = state.products.find(item => item.id === props.id);  
     return state.products.find(item => item.id === props.id);
+
 }

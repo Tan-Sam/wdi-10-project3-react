@@ -33,9 +33,11 @@ function handleCartAdd(state, payload) {
   // state.items won't be null as state is initialized.
   if (state.items.length === 0 ||
       !itemFound) {
+
+
     state.items.push({
       id: payload.productId,
-      qty: 1
+      qty: 1,
     });
   }
   else {  //  find item & increase qty.
@@ -93,10 +95,21 @@ export function isInCart(state, props) {
 }
 
 export function getItems(state, props) {
-    console.log('method???');
+
     return state.cart.items.map(item =>{
-      console.log('im in the method: ',item);
-      return getProduct(state, item );
+
+      let theprod = getProduct(state, item );
+
+      // console.log('item qty is: ', item.qty);
+      // console.log('item price is: ', item.price);
+
+      theprod = {...theprod, qty: item.qty, subtotal: (item.qty * item.price)};
+
+      // console.log(theprod);
+
+
+
+      return theprod;
     });
 }
 
@@ -105,9 +118,12 @@ export function getCurrency(state, props) {
 }
 
 export function getTotal(state, props) {
-    return state.cart.items.reduce((acc, id) => {
-        const item = getProduct(state, { id });
-        return acc + item.price;
+
+    return state.cart.items.reduce((acc, cartItem) => {
+        const item = getProduct(state, cartItem);
+        console.log(item);
+        console.log(cartItem);
+        return acc + (cartItem.qty * item.price);//item.price;
     }, 0);
 }
 // </editor-fold>

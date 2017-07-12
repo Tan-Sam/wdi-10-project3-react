@@ -8,8 +8,8 @@ import './Cart.css';
 
 const Cart = ({ items, total, currency }) => {
 
-    console.log('Im in cart');
-    items.forEach(el=>console.log(el));
+    // console.log('Im in cart');
+    // items.forEach(el=>console.log(el));
 
     return (
         <div>
@@ -45,8 +45,8 @@ Cart.propTypes = {
 
 const mapStateToProps = (state, props) => {
 
-  console.log(state);
-  console.log(props);
+  // console.log(state);
+  // console.log(props);
     return {
         items: getItems(state, props),
         currency: getCurrency(state, props),

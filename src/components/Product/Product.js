@@ -63,7 +63,7 @@ class Product extends Component {
     }
 
     render() {
-      // eslint-disable-next-line 
+      // eslint-disable-next-line
         const { name, price, currency, image, url, isInCart } = this.props;
 
 

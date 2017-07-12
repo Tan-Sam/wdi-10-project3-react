@@ -9,3 +9,9 @@
 .cart-item__price {
   float: right;
 }
+
+
+.cart-item div {
+  border: 1px solid lightGray;
+  display: inline-block;
+}
