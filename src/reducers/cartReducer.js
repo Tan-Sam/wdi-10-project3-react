@@ -10,9 +10,6 @@ const initialState = {
     currency: '$'
 };
 
-// const initialState = [];
-
-
 export default function cart(state = initialState, action = {}) {
     switch (action.type) {
         case CART_ADD:
@@ -27,11 +24,13 @@ export default function cart(state = initialState, action = {}) {
 
 function handleCartAdd(state, payload) {
 
-
+  // find if item is in store with productId
   let itemFound = state.items.find((itm) => {
                     return itm.id === payload.productId
                   });
 
+  // if array is empty or not found
+  // state.items won't be null as state is initialized.
   if (state.items.length === 0 ||
       !itemFound) {
     state.items.push({
@@ -39,7 +38,7 @@ function handleCartAdd(state, payload) {
       qty: 1
     });
   }
-  else {
+  else {  //  find item & increase qty.
     state.items = state.items.map((itm) => {
       if (itm === itemFound) {
         itm.qty++;
@@ -51,6 +50,8 @@ function handleCartAdd(state, payload) {
 }
 
 function handleCartRemove(state, payload) {
+      // find item to dec(--) qty. if qty. becomes 0,
+      // don't return item.
       state.items = state.items.filter((itm) => {
         if (itm.id === payload.productId) {
           //  if qty is 0, don't return item.
@@ -65,7 +66,7 @@ function handleCartRemove(state, payload) {
       return state;
 }
 
-// action creators
+// <editor-fold action creators
 export function addToCart(productId) {
     return {
         type: CART_ADD,
@@ -83,15 +84,19 @@ export function removeFromCart(productId) {
         }
     }
 }
+// </editor-fold>
 
-
-// selectors
+// <editor-fold selectors
 export function isInCart(state, props) {
     return state.cart.items.indexOf(props.id) !== -1;
 }
 
 export function getItems(state, props) {
-    return state.cart.items.map(id => getProduct(state, { id }));
+    console.log('method???');
+    return state.cart.items.map(item =>{
+      console.log('im in the method: ',item);
+      getProduct(state, item );
+    });
 }
 
 export function getCurrency(state, props) {
@@ -104,3 +109,4 @@ export function getTotal(state, props) {
         return acc + item.price;
     }, 0);
 }
+// </editor-fold>

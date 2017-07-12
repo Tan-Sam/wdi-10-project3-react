@@ -19,7 +19,7 @@ class Product extends Component {
     }
 
     /*
-     *  button clicked
+     *  remove button clicked
      */
     handleClick = (e) => {
       e.preventDefault();
@@ -36,20 +36,16 @@ class Product extends Component {
         productCount: newProductCount
       });
 
-      console.log(this.props.name, ' handleClick: ', this.state.productCount);
+      // console.log(this.props.name, ' handleClick: ', this.state.productCount);
 
       // eslint-disable-next-line
       const { id, addToCart, removeFromCart, isInCart } = this.props;
 
       removeFromCart(id);
 
-
-      // addToCart(id);
-
-      // removeFromCart(id);
       // if (isInCart) {
+      //     removeFromCart(id);
       // } else {
-      //
       //     addToCart(id);
       // }
     }
@@ -63,7 +59,7 @@ class Product extends Component {
           productCount: this.state.productCount+1
         });
 
-        console.log(this.props.name, 'pictureClicked: ', this.state.productCount);
+        // console.log(this.props.name, 'pictureClicked: ', this.state.productCount);
     }
 
     render() {

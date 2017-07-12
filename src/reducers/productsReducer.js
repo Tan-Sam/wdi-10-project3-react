@@ -8,6 +8,11 @@ export function getProducts(state, props) {
     return state.products;
 }
 
+//  for new cart (sam)
+export function getProductsByIds(state, props) {
+    // return state.products;
+}
+
 export function getProduct(state, props) {
     return state.products.find(item => item.id === props.id);
 }
