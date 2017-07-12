@@ -48,20 +48,21 @@ function handleCartAdd(state, payload) {
     });
   }
   return state;
-  //<editor-fold working
-    //return
-    // {
-    //     ...state,
-    //     items: [ ...state.items, payload.productId ]
-    // };
-    // </editor-fold>
 }
 
 function handleCartRemove(state, payload) {
-    return {
-        ...state,
-        items: state.items.filter(id => id !== payload.productId)
-    };
+      state.items = state.items.filter((itm) => {
+        if (itm.id === payload.productId) {
+          //  if qty is 0, don't return item.
+          itm.qty--;
+          if (itm.qty === 0) {
+            return;
+          }
+        }
+        return itm;
+      });
+
+      return state;
 }
 
 // action creators

@@ -57,7 +57,7 @@ class Product extends Component {
     pictureClicked = (e) => {
         e.preventDefault();
 
-this.props.addToCart(this.props.id);
+        this.props.addToCart(this.props.id);
 
         this.setState({
           productCount: this.state.productCount+1
@@ -69,6 +69,9 @@ this.props.addToCart(this.props.id);
     render() {
         const { name, price, currency, image, url, isInCart } = this.props;
 
+
+        const isInCartOnot = this.state.productCount > 0;
+
         return (
             <div className="product thumbnail" >
                 <img src={image} alt="product" onClick={this.pictureClicked}/>
@@ -79,9 +82,9 @@ this.props.addToCart(this.props.id);
                     <div className="product__price">{price} {currency}</div>
                     <div className="product__button-wrap">
                         <button
-                            className={isInCart ? 'btn btn-danger' : 'btn btn-primary'}
+                            className={isInCartOnot ? 'btn btn-danger' : 'btn btn-primary'}
                             onClick={this.handleClick}>
-                            {isInCart ? 'Remove' : 'Add to POS'}
+                            {isInCartOnot ? 'Remove' : ''}
                         </button>
                     </div>
                 </div>
