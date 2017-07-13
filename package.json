@@ -2,11 +2,27 @@
   "name": "wdi-10-project-react",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/apiInventory": {
+      "target": "http://localhost:4000",
+      "ws": true
+    },
+    "/apiTransaction": {
+      "target": "http://localhost:4000",
+      "ws": true
+    },
+    "/": {
+      "target": "http://localhost:4000",
+      "ws": true
+    }
+  },
+
   "devDependencies": {
     "gh-pages": "^1.12.1",
     "react-scripts": "1.0.8"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

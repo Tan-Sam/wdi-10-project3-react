@@ -20,10 +20,10 @@ export default class HomePage extends React.Component {
       <div className="container">
           <Header />
           <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-5">
                   <Cart/>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-7">
                 {plist}
               </div>
           </div>
