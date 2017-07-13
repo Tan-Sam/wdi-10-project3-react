@@ -46,9 +46,9 @@ const Cart = ({ items, total, currency }) => {
                               <div className="name col-md-3">$Sub-total</div>
                             </div>
                             <ol>
-                              {items.map(item => (
+                              {items.map((item, index) => (
                                 <li key={item.id}>
-                                  <CartItem {...item} />
+                                  <CartItem {...item} index={index+1}/>
                                 </li>
                               ))}
                             </ol>
