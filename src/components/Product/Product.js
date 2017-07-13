@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {
   addToCart,
   removeFromCart,
+  removeAllFromCart,
   isInCart } from '../../reducers/cartReducer';
 
 import './Product.css';
@@ -23,23 +24,33 @@ class Product extends Component {
      */
       removeItemClicked = (e) => {
       e.preventDefault();
-
-      let newProductCount = this.state.productCount;
-
-      newProductCount--;
-
-      if (newProductCount < 0 ) {
-        newProductCount = 0;
-      }
-
-      this.setState({
-        productCount: newProductCount
-      });
+      // console.log(e.target.name);
 
       // eslint-disable-next-line
-      const { id, addToCart, removeFromCart, isInCart } = this.props;
+      const { id, addToCart, removeFromCart, removeAllFromCart, isInCart } = this.props;
 
-      removeFromCart(id);
+      if (e.target.name === 'minusOne') {
+        let newProductCount = this.state.productCount;
+
+        newProductCount--;
+
+        if (newProductCount < 0 ) {
+          newProductCount = 0;
+        }
+
+        this.setState({
+          productCount: newProductCount
+        });
+
+        removeFromCart(id);
+      }else if (e.target.name === 'minusAll') {
+
+        this.setState({
+          productCount: 0
+        });
+
+        removeAllFromCart(id);
+      }
     }
 
     // add item qty.
@@ -55,9 +66,10 @@ class Product extends Component {
 
     render() {
       // eslint-disable-next-line
-        const { name, price, currency, image, url, isInCart } = this.props;
+        const { name, price, currency, image, url, isInCart, qty } = this.props;
 
         const isInCartOnot = this.state.productCount > 0;
+        const moreThanOne = this.state.productCount > 1;
 
         return (
             <div className="product thumbnail" >
@@ -66,12 +78,22 @@ class Product extends Component {
                     <h3>
                         <a href={url}>{name}</a>
                     </h3>
-                    <div className="product__price">{price} {currency}</div>
+                    <div className="product__price">
+                      <strong className="dPrice">{price}</strong> {currency}
+                    </div>
+                    <span className="qtySpan">3</span>
                     <div className="product__button-wrap">
                         <button
+                            name="minusAll"
+                            className={moreThanOne ? 'btn btn-danger' : 'donshow'}
+                            onClick={this.removeItemClicked}>
+                            {moreThanOne ? '- All' : ''}
+                        </button>
+                        <button
+                            name="minusOne"
                             className={isInCartOnot ? 'btn btn-danger' : 'btn btn-primary'}
                             onClick={this.removeItemClicked}>
-                            {isInCartOnot ? 'Remove' : ''}
+                            {isInCartOnot ? '- 1' : ''}
                         </button>
                     </div>
                 </div>
@@ -90,6 +112,7 @@ Product.propTypes = {
     isInCart: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
     removeFromCart: PropTypes.func.isRequired,
+    removeAllFromCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, props) => {
@@ -100,7 +123,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
     addToCart: (id) => dispatch(addToCart(id)),
-    removeFromCart: (id) => dispatch(removeFromCart(id))
+    removeFromCart: (id) => dispatch(removeFromCart(id)),
+    removeAllFromCart: (id) => dispatch(removeAllFromCart(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

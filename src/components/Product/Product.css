@@ -3,9 +3,15 @@
     overflow: auto;
 }
 
+.donshow {
+  display: none;
+}
+
 .product__price {
     display: inline-block;
-    line-height: 34px;
+    line-height: 34px; /*1.6em;*/
+    font-size: 1.6em;
+    color: #FF635E;
 }
 
 .product__button-wrap {
@@ -28,4 +34,14 @@
 
 .btn-primary {
   display: none;
+}
+
+.btn-danger {
+  margin: 3px;
+  background-color: #FF635E;
+  border-color: #8E1E1B;
+}
+
+.qtySpan {
+    margin-left: 15px;
 }

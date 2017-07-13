@@ -3,6 +3,9 @@ import { getProduct } from '../reducers/productsReducer';
 // actions
 const CART_ADD   = 'cart/ADD';
 const CART_REMOVE = 'cart/REMOVE';
+const CART_REMOVE_ALL_BY_ID = 'cart/REMOVE_ALL';
+
+const CART_REMOVE_sasALL = 'cart/REMOVE_ALL';
 
 // reducer
 const initialState = {
@@ -16,6 +19,9 @@ export default function cart(state = initialState, action = {}) {
             return handleCartAdd(state, action.payload);
         case CART_REMOVE:
             return handleCartRemove(state, action.payload);
+        case CART_REMOVE_ALL_BY_ID:
+            return handleCartRemoveAll(state, action.payload);
+
         default:
             return state;
     }
@@ -52,21 +58,35 @@ function handleCartAdd(state, payload) {
 }
 
 function handleCartRemove(state, payload) {
-      // find item to dec(--) qty. if qty. becomes 0,
-      // don't return item.
-      state.items = state.items.filter((itm) => {
-        if (itm.id === payload.productId) {
-          //  if qty is 0, don't return item.
-          itm.qty--;
-          if (itm.qty === 0) {
-            // eslint-disable-next-line
-            return;
-          }
-        }
-        return itm;
-      });
+  // find item to dec(--) qty. if qty. becomes 0,
+  // don't return item.
+  state.items = state.items.filter((itm) => {
+    if (itm.id === payload.productId) {
+      //  if qty is 0, don't return item.
+      itm.qty--;
+      if (itm.qty === 0) {
+        // eslint-disable-next-line
+        return;
+      }
+    }
+    return itm;
+  });
 
-      return {...state};
+  return {...state};
+}
+
+function handleCartRemoveAll(state, payload) {
+  console.log(payload.productId);
+
+  state.items = state.items.filter((itm) => {
+    if (itm.id === payload.productId) {
+      //  qty is 0, don't return item.
+      return;
+    }
+    return itm;
+  });
+
+  return {...state};
 }
 
 // <editor-fold action creators
@@ -87,6 +107,22 @@ export function removeFromCart(productId) {
         }
     }
 }
+
+export function removeAllFromCart(productId) {
+    return {
+        type: CART_REMOVE_ALL_BY_ID,
+        payload: {
+            productId
+        }
+    }
+}
+
+export function removeAllItemsFromCart() {
+    return {
+        type: CART_REMOVE_ALL_BY_ID
+    }
+}
+
 // </editor-fold>
 
 // <editor-fold selectors
@@ -114,8 +150,8 @@ export function getTotal(state, props) {
 
     return state.cart.items.reduce((acc, cartItem) => {
         const item = getProduct(state, cartItem);
-        console.log(item);
-        console.log(cartItem);
+        // console.log(item);
+        // console.log(cartItem);
         return acc + (cartItem.qty * item.price);
     }, 0);
 }

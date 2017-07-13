@@ -2,33 +2,46 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 // eslint-disable-next-line
-import { getItems, getCurrency, getTotal } from '../../reducers/cartReducer';
+import {
+  getItems,
+  getCurrency,
+  getTotal,
+  removeAllFromCart
+ } from '../../reducers/cartReducer';
 import CartItem from '../CartItem/CartItem';
 
 import './Cart.css';
 
-
-
 const Cart = ({ items, total, currency }) => {
 
+  const onClick = (e) => {
+    console.log("Txbutton clicked. ");
 
-  console.log("clicked buttosdvgaduhvgadyufgvaduyfgn");
-  console.log(items);
-  axios.post('/apiTransaction/items', items)
-    .then((response) => {
-      console.log('i was responded' ,response.data);
+    const itemsWithSubtotal = items.map((e) => {
+      e.subtotal = e.qty * e.price;
+      return e;
     });
 
+    const postContent = {
+      transaction: {
+        items: itemsWithSubtotal,
+        total,
+        txTime: new Date()}
+      };
 
-
-
-  const onClick = (e) => {
-    console.log("clicked button");
-    console.log(items);
-    axios.post('/apiTransaction/items', items)
+    console.log(postContent);
+    axios.post('/apiTransaction', postContent)
       .then((response) => {
-        console.log('i was responded' ,response.data);
+        console.log('apiTransaction responded' ,response.data);
+
+        removeAllFromCart();
+
       })
+      .catch((err) => {
+        console.log('apiTransaction error: ', err);
+      });
+
+
   }
     return (
         <div>
@@ -54,14 +67,17 @@ const Cart = ({ items, total, currency }) => {
                             </ol>
                           </div>)
                         }
-                        {items.length === 0 && (
-                            <div className="alert alert-info">Cart is empty</div>
-                        )}
+                        {
+                          items.length === 0 &&
+                          (<div className="alert alert-info">Cart is empty</div>)
+                        }
 
                         <div className="cart__total" onClick={onClick}>
                           Total: {total} {currency}
-                          <span className="txCompleteButton glyphicon glyphicon-ok"
-                                />
+                          {
+                            (total === 0)? "":
+                            <span className="txCompleteButton glyphicon glyphicon-ok"/>
+                          }
                         </div>
                     </div>
                 </div>
@@ -84,4 +100,10 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeAllFromCart: () => dispatch(removeAllFromCart()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

@@ -7,6 +7,8 @@
 /coverage
 src/components/App/App-test.js
 /testings
+/pro3
+pro3.zip
 
 # production
 /build

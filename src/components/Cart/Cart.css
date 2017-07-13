@@ -3,14 +3,10 @@
   border-radius: 1%
 }
 
-
 .cart ol {
   margin-bottom: .7em;
   padding-left: 5px;
   padding-right: 5px;
-
-  /*padding: 20px; */
-  /*list-style-type:decimal;*/
 }
 
 .cart-item.headers {
@@ -23,25 +19,29 @@ li:nth-child(even) {
 
 .cart ol li {
   display: inline;
-  /*margin: 0 10px;
-  padding: 0 10px;*/
-  /*float: right;*/
 }
 
 .cart__total:hover {
   opacity: 0.3;
 }
 
+.cart__total:active {
+  opacity: 1;
+}
+
 .cart__total {
   font-weight: bold;
   font-size: 2em;
   height: 2.5em;
-  /*width: 7em;*/
   line-height: 2em;
   text-align: right;
   bottom: 50px;
   right: 35px;
   position: absolute;
-  border: 1px solid #7913AB;
+  /*border: 1px solid #7913AB;*/
   border-radius: 7%;
+}
+
+.dontShow {
+  display: none;
 }

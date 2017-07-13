@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 
+import './NotFound.css';
+
 export default class NotFound extends React.Component {
   constructor(props) {
     super(props);
@@ -7,22 +9,22 @@ export default class NotFound extends React.Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="error-template">
+      <div className="notFound container">
+        <div className="row">
+            <div className="col-md-12">
+                <div className="error-template">
                     <h1>
                         Oops!</h1>
                     <h2>
                         404 Not Found</h2>
-                    <div class="error-details">
+                    <div className="error-details">
                         Sorry, an error has occured, Requested page not found!
                     </div>
-                    <div class="error-actions">
-                        <a href="http://www.jquery2dotnet.com" class="btn btn-primary btn-lg">
-                          <span class="glyphicon glyphicon-home"></span>
+                    <div className="error-actions">
+                        <a href="/" className="btn btn-primary btn-lg">
+                          <span className="glyphicon glyphicon-home"></span>
                             Take Me Home
-                        </a>                        
+                        </a>
                     </div>
                 </div>
             </div>

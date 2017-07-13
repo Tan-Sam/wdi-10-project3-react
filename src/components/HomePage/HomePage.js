@@ -7,6 +7,8 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NumberPad from '../NumberPad/NumberPad.js';
 
+
+
 export default class HomePage extends React.Component {
   // constructor(props) {
   //   super(props);
