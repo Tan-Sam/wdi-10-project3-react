@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-// import Inventoryitem from '../Inventoryitem/Inventoryitem';
-// import {readInventory} from '../../actions/inventoryActions';
 import { connect } from 'react-redux';
 import Transactionitem from '../Transactionitem/Transactionitem';
 import './Sales.css'
@@ -45,17 +43,19 @@ export class Sales extends Component {
 
   render() {
     return (
+      <div>
       <div id='inventoryList'>
         <div className='header'>Sales</div>
         <div className='title col-md-6'>Date:{this.state.transactions.total}</div>
-        <div className='title col-md-6'>Total Sales</div>
+        <div className='title col-md-6'>Total Sales </div>
         {this.addItems()}
-        <div className='totalSales'>Grand Sales:${this.grandSales()}</div>
-        <div>
-          <button>
-            <Link to='/'>Back to POS</Link>
-          </button>
-        </div>
+      </div>
+      <div className='totalSales'>Grand Sales:${this.grandSales()}</div>
+      <div className='button'>
+        <button className='button'>
+          <Link className='button' to='/'>Back to POS</Link>
+        </button>
+      </div>
       </div>
     );
   }

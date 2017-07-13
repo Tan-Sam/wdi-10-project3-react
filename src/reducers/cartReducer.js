@@ -3,9 +3,9 @@ import { getProduct } from '../reducers/productsReducer';
 // actions
 const CART_ADD   = 'cart/ADD';
 const CART_REMOVE = 'cart/REMOVE';
-const CART_REMOVE_ALL_BY_ID = 'cart/REMOVE_ALL';
+const CART_REMOVE_ALL_BY_ID = 'cart/REMOVE_ALL_BY_ID';
 
-const CART_REMOVE_sasALL = 'cart/REMOVE_ALL';
+const CART_REMOVE_ALL = 'cart/REMOVE_ALL';
 
 // reducer
 const initialState = {
@@ -20,7 +20,10 @@ export default function cart(state = initialState, action = {}) {
         case CART_REMOVE:
             return handleCartRemove(state, action.payload);
         case CART_REMOVE_ALL_BY_ID:
-            return handleCartRemoveAll(state, action.payload);
+            return handleCartRemoveAllById(state, action.payload);
+        case CART_REMOVE_ALL:
+            console.log('switchswitchswitchswitchswitch');
+            return handleCartRemoveAll(state);
 
         default:
             return state;
@@ -75,7 +78,14 @@ function handleCartRemove(state, payload) {
   return {...state};
 }
 
-function handleCartRemoveAll(state, payload) {
+function handleCartRemoveAll(state) {
+
+  let newState = {...state};
+  newState.items = [];
+  return newState;
+}
+
+function handleCartRemoveAllById(state, payload) {
   console.log(payload.productId);
 
   state.items = state.items.filter((itm) => {
@@ -118,8 +128,11 @@ export function removeAllFromCart(productId) {
 }
 
 export function removeAllItemsFromCart() {
+    console.log('actionactionactionactionactionaction');
     return {
-        type: CART_REMOVE_ALL_BY_ID
+        type: CART_REMOVE_ALL,
+        payload: {
+        }
     }
 }
 

@@ -6,17 +6,29 @@ import {
   getItems,
   getCurrency,
   getTotal,
-  removeAllFromCart
+  removeAllFromCart,
+  removeAllItemsFromCart
  } from '../../reducers/cartReducer';
 import CartItem from '../CartItem/CartItem';
 
 import './Cart.css';
 
-const Cart = ({ items, total, currency }) => {
+// const
 
-  const onClick = (e) => {
+class Cart extends React.Component {
+// = ({ items, total, currency}) => {
+
+  constructor(props){
+    super(props);
+
+
+  }
+
+  onClick = (e) => {
+
+const { items, total, currency} = this.props;
+
     console.log("Txbutton clicked. ");
-
     const itemsWithSubtotal = items.map((e) => {
       e.subtotal = e.qty * e.price;
       return e;
@@ -29,20 +41,23 @@ const Cart = ({ items, total, currency }) => {
         txTime: new Date()}
       };
 
-    console.log(postContent);
+
+    const {removeAllFromCart} = this.props;
+
+    removeAllFromCart();
+    // console.log(postContent);
     axios.post('/apiTransaction', postContent)
       .then((response) => {
-        console.log('apiTransaction responded' ,response.data);
-
-        removeAllFromCart();
+        console.log('apiTransaction responded');
 
       })
       .catch((err) => {
         console.log('apiTransaction error: ', err);
       });
-
-
   }
+  render(){
+
+    const { items, total, currency} = this.props;
     return (
         <div>
             <h3>POS Screen Tally</h3>
@@ -72,7 +87,7 @@ const Cart = ({ items, total, currency }) => {
                           (<div className="alert alert-info">Cart is empty</div>)
                         }
 
-                        <div className="cart__total" onClick={onClick}>
+                        <div className="cart__total" onClick={this.onClick}>
                           Total: {total} {currency}
                           {
                             (total === 0)? "":
@@ -84,12 +99,14 @@ const Cart = ({ items, total, currency }) => {
             </div>
         </div>
     );
+    }
 }
 
 Cart.propTypes = {
     items: PropTypes.array,
     total: PropTypes.number,
     currency: PropTypes.string,
+    removeAllFromCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, props) => {
@@ -102,7 +119,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    removeAllFromCart: () => dispatch(removeAllFromCart()),
+    // addToCart: (id) => dispatch(addToCart(id)),
+    removeAllFromCart: () => dispatch(removeAllItemsFromCart()),
   }
 }
 
