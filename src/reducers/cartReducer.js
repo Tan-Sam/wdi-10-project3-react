@@ -84,7 +84,6 @@ function handleCartRemoveAll(state) {
 }
 
 function handleCartRemoveAllById(state, payload) {
-
   state.items = state.items.filter((itm)=> {
     return itm.id != payload.productId;
   });
@@ -134,6 +133,23 @@ export function removeAllItemsFromCart() {
 // <editor-fold selectors
 export function isInCart(state, props) {
     return state.cart.items.indexOf(props.id) !== -1;
+}
+
+export function getItemQtyInCart(state, props) {
+  try {
+      const result = state.cart.items.find((itm) => {
+        return itm.id === props.id;
+      });
+      if (result) {
+        return result.qty;
+      }else {
+        return 0;
+      }
+
+  } catch (e) {
+    console.log(e);
+    return 0;
+  }
 }
 
 export function getItems(state, props) {
