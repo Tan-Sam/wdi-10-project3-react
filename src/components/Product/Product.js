@@ -29,6 +29,7 @@ class Product extends Component {
       // eslint-disable-next-line
       const { id, addToCart, removeFromCart, removeAllFromCart, isInCart } = this.props;
 
+
       if (e.target.name === 'minusOne') {
         let newProductCount = this.state.productCount;
 
@@ -81,7 +82,10 @@ class Product extends Component {
                     <div className="product__price">
                       <strong className="dPrice">{price}</strong> {currency}
                     </div>
-                    <span className="qtySpan">3</span>
+                    {
+                      isInCartOnot?
+                      <span className="qtySpan">{this.state.productCount}</span>:""
+                    }
                     <div className="product__button-wrap">
                         <button
                             name="minusAll"

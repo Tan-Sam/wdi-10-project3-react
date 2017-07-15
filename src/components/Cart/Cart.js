@@ -44,15 +44,22 @@ const { items, total, currency} = this.props;
 
     const {removeAllFromCart} = this.props;
 
-    removeAllFromCart();
+    let axiosInstance = axios.create();
+    axiosInstance.defaults.timeout = 1200;
+
+    // // working
+    // removeAllFromCart();
     // console.log(postContent);
-    axios.post('/apiTransaction', postContent)
+    axiosInstance.post('/apiTransaction', postContent)
       .then((response) => {
         console.log('apiTransaction responded');
-
+        alert('success');
+        removeAllFromCart();
       })
       .catch((err) => {
         console.log('apiTransaction error: ', err);
+        alert('error');
+        removeAllFromCart();
       });
   }
   render(){

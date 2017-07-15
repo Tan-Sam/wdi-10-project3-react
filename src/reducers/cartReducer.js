@@ -79,24 +79,17 @@ function handleCartRemove(state, payload) {
 }
 
 function handleCartRemoveAll(state) {
-
-  let newState = {...state};
-  newState.items = [];
-  return newState;
+  state.items = [];
+  return {...state};
 }
 
 function handleCartRemoveAllById(state, payload) {
-  console.log(payload.productId);
 
-  state.items = state.items.filter((itm) => {
-    if (itm.id === payload.productId) {
-      //  qty is 0, don't return item.
-      return;
-    }
-    return itm;
+  state.items = state.items.filter((itm)=> {
+    return itm.id != payload.productId;
   });
 
-  return {...state};
+  return {...state};  //  no clone, no update
 }
 
 // <editor-fold action creators

@@ -25,11 +25,13 @@
 .product.thumbnail img[alt=product]:hover {
   opacity: 0.5;
   filter: alpha(opacity=50);
+
 }
 
 .product.thumbnail img[alt=product]:active {
   opacity: 0;
   filter: alpha(opacity=0);
+  
 }
 
 .btn-primary {
@@ -44,4 +46,5 @@
 
 .qtySpan {
     margin-left: 15px;
+    color: #888;
 }
