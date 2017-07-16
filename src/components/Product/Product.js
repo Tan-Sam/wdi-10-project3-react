@@ -1,12 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { getItemQtyInCart } from '../../apis/cartAPI';
 import {
   addToCart,
   removeFromCart,
-  removeAllFromCart,
-  getItemQtyInCart,
-  isInCart } from '../../reducers/cartReducer';
+  removeAllFromCart} from  '../../actions/cartActions';
 
 import './Product.css';
 
@@ -42,7 +41,6 @@ class Product extends Component {
               currency,
               image,
               url,
-              isInCart,
               qty,
               quantityInCart } = this.props;
 
@@ -72,7 +70,7 @@ class Product extends Component {
                   <div className="product__price">
                     <strong className="dPrice">{price}</strong> {currency}
                   </div>
-                  { cartQty }
+                    { cartQty }
                   <div className="product__button-wrap">
                       {minusAllButton}
                       {minusOneButton}
@@ -90,7 +88,6 @@ Product.propTypes = {
     currency: PropTypes.string,
     image: PropTypes.string,
     url: PropTypes.string,
-    isInCart: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
     removeFromCart: PropTypes.func.isRequired,
     removeAllFromCart: PropTypes.func.isRequired,

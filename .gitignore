@@ -23,3 +23,13 @@ pro3.zip
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# un-verified
+/src/utils
+/src/components/Login
+/src/actions/AppActions.js
+/src/components/pages
+src/constants/AppConstants.js
+src/constants/MessageConstants.js
+src/constants/.keep
