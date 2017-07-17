@@ -32,7 +32,6 @@ class Cart extends React.Component {
 
   const { items, total, currency} = this.props;
 
-  console.log("Txbutton clicked. ");
   const itemsWithSubtotal = items.map((e) => {
     e.subtotal = e.qty * e.price;
     return e;
