@@ -7,40 +7,24 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import NumberPad from '../NumberPad/NumberPad.js';
 
+import {connect} from 'react-redux';
 
+import {getCurrentOperation} from '../../reducers/currentOperationReducer';
 
-export default class HomePage extends React.Component {
+export class HomePage extends React.Component {
   // constructor(props) {
   //   super(props);
   // }
 
   render() {
 
-    const plist = true? <ProductList />:<NumberPad />;
+    const {currentOperation} = this.props
+    const plist = (currentOperation === 'salesRegistration')? <ProductList />:<NumberPad />;
+
+    console.log(currentOperation);
 
     return (
       <div className="container">
-
-
-      <div className="modal fade in" id="myModal" role="dialog">
-    <div className="modal-dialog">
-
-      <div className="modal-content">
-        <div className="modal-header">
-          <button type="button" className="close" data-dismiss="modal">×</button>
-          <h4 className="modal-title">Modal Header</h4>
-        </div>
-        <div className="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div className="modal-footer">
-          <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
 
           <Header />
           <div className="row">
@@ -60,3 +44,11 @@ export default class HomePage extends React.Component {
 HomePage.propTypes = {
   currentOperation: PropTypes.string
 }
+
+const mapStateToProps = (state) => {
+  return{
+    currentOperation: getCurrentOperation(state)
+  }
+}
+
+export default connect(mapStateToProps)(HomePage);

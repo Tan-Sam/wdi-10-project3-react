@@ -1,6 +1,5 @@
-export const updateTxCompleted = () => {
-  return {
-    type: 'UPDATE_TX_COMPLETED',
-    txCompleted: true
-  };
-}
+// export const updateTxCompleted = () => {
+//   return {
+//     type: 'UPDATE_TX_COMPLETED'
+//   };
+// }

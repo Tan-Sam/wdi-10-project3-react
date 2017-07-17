@@ -21,7 +21,7 @@ export let initStore = () => {
     products: productsReducer,
 
     amtKeyedIn: NumberPadReducer,
-    txCompleted: txCompletedReducer,
+    // txCompleted: txCompletedReducer,
     currentOperation: currentOperationReducer
   });
 

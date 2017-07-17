@@ -8,6 +8,10 @@ import {
   getTotal
 } from '../../apis/cartAPI';
 
+// import {updateTxCompleted} from '../../actions/txCompletedAction'
+import {updateCurrentOperation} from '../../actions/currentOperationAction'
+
+
 import CartItem from '../CartItem/CartItem';
 
 import {
@@ -42,7 +46,7 @@ class Cart extends React.Component {
     };
 
 
-  const {removeAllFromCart} = this.props;
+  const {removeAllFromCart, txCompleted} = this.props;
 
   let axiosInstance = axios.create();
   axiosInstance.defaults.timeout = 1200;
@@ -55,6 +59,7 @@ class Cart extends React.Component {
       alert('error');
     }).then(() => {
       removeAllFromCart();
+      txCompleted();
     });
   }
   render(){
@@ -123,6 +128,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeAllFromCart: () => dispatch(removeAllItemsFromCart()),
+    txCompleted: () => dispatch(updateCurrentOperation())
   }
 }
 

@@ -11,7 +11,8 @@ const initialState = {
     currency: '$'
 };
 
-export default function cart(state = initialState, action = {}) {
+export default function cart(state = initialState,
+                             action = {}) {
     switch (action.type) {
         case CART_ADD:
             return handleCartAdd(state, action.payload);
